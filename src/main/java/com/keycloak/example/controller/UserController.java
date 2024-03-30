@@ -40,7 +40,7 @@ public class UserController extends AbstractController {
 			user.setKeycloakId(keycloakId);
 			user.setFirstName(firstname);
 			user.setLastName(lastname);
-			user.setCreateDate(LocalDateTime.now());
+			user.setCreatedDate(LocalDateTime.now());
 			user = userService.addUser(user);
 		}
 		return new ResponseDTO().message("Success").object(user).status(StatusEnum.SUCCESS);

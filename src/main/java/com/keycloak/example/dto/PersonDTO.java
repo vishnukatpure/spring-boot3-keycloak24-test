@@ -1,4 +1,4 @@
-package com.keycloak.testing.dto;
+package com.keycloak.example.dto;
 
 public class PersonDTO extends AbstractEntityBaseDTO {
 

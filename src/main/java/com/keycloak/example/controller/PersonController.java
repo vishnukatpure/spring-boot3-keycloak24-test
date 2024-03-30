@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.keycloak.example.dto.PersonDTO;
 import com.keycloak.example.dto.ResponseDTO;
 import com.keycloak.example.model.User;
 import com.keycloak.example.services.PersonService;
-import com.keycloak.testing.dto.PersonDTO;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 

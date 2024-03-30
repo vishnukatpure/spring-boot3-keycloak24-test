@@ -29,7 +29,7 @@ public abstract class GenericService {
 	}
 
 	public void setUserDetailsForUpdate(EntityBase entityBase, User user) {
-		entityBase.setCreateBy(user.getId());
-		entityBase.setCreateDate(LocalDateTime.now());
+		entityBase.setCreatedBy(user.getId());
+		entityBase.setCreatedDate(LocalDateTime.now());
 	}
 }
