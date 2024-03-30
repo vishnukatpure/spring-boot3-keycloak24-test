@@ -11,7 +11,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 @Table(appliesTo = "person")
-@EnableJpaAuditing 
+@EnableJpaAuditing
 public class Person extends EntityBase {
 
 	/**

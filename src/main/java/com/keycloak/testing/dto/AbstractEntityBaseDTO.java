@@ -53,6 +53,5 @@ public abstract class AbstractEntityBaseDTO {
 	public void setUpdatedDate(LocalDateTime updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-	
-	
+
 }

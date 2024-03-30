@@ -1,6 +1,5 @@
 package com.keycloak.example.services;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.keycloak.example.dto.ResponseDTO;
 import com.keycloak.example.model.Person;
+import com.keycloak.example.model.User;
 import com.keycloak.example.repository.PersonRepository;
 import com.keycloak.testing.dto.PersonDTO;
 
@@ -40,24 +40,23 @@ public class PersonService extends GenericService {
 	}
 
 	@Transactional
-	public void deletePerson(Long personId) {
+	public void deletePerson(Long personId, User user) {
 		personRepository.deleteById(personId);
 	}
 
 	@Transactional
-	public ResponseDTO addPerson(PersonDTO personDto) {
-		//personDto.setCreateBy(getLoggedInUser().getId());
-		personDto.setCreateDate(LocalDateTime.now());
+	public ResponseDTO addPerson(PersonDTO personDto, User user) {
+		setUserDetails(user, user);
 		Person person = getMapper().map(personDto, Person.class);
 		person.validate();
+		setUserDetails(person, user);
 		return bindResponse(getMapper().map(personRepository.save(person), PersonDTO.class));
 	}
 
 	@Transactional
-	public ResponseDTO updatePerson(PersonDTO personDto) {
-		//personDto.setUpdatedBy(getLoggedInUser().getId());
-		personDto.setUpdatedDate(LocalDateTime.now());
+	public ResponseDTO updatePerson(PersonDTO personDto, User user) {
 		Person person = getMapper().map(personDto, Person.class);
+		setUserDetailsForUpdate(person, user);
 		return bindResponse(getMapper().map(personRepository.save(person), PersonDTO.class));
 	}
 

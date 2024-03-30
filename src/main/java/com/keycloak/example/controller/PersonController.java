@@ -2,6 +2,8 @@ package com.keycloak.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.keycloak.example.dto.ResponseDTO;
+import com.keycloak.example.model.User;
 import com.keycloak.example.services.PersonService;
 import com.keycloak.testing.dto.PersonDTO;
 
@@ -41,18 +44,21 @@ public class PersonController extends AbstractController {
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public HttpStatus deletePerson(@PathVariable Long id) {
-		personService.deletePerson(id);
+	public HttpStatus deletePerson(@PathVariable Long id, @AuthenticationPrincipal Jwt jwt) {
+		User user = getLoggedInUser(jwt);
+		personService.deletePerson(id, user);
 		return HttpStatus.NO_CONTENT;
 	}
 
 	@PostMapping
-	public ResponseDTO insertPersone(@RequestBody PersonDTO person) {
-		return personService.addPerson(person);
+	public ResponseDTO insertPersone(@RequestBody PersonDTO person, @AuthenticationPrincipal Jwt jwt) {
+		User user = getLoggedInUser(jwt);
+		return personService.addPerson(person, user);
 	}
 
 	@PutMapping
-	public ResponseDTO updatePerson(@RequestBody PersonDTO personDto) {
-		return personService.updatePerson(personDto);
+	public ResponseDTO updatePerson(@RequestBody PersonDTO personDto, @AuthenticationPrincipal Jwt jwt) {
+		User user = getLoggedInUser(jwt);
+		return personService.updatePerson(personDto, user);
 	}
 }

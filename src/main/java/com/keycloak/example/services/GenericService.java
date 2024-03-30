@@ -1,10 +1,14 @@
 package com.keycloak.example.services;
 
+import java.time.LocalDateTime;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.keycloak.example.dto.ResponseDTO;
 import com.keycloak.example.enums.StatusEnum;
+import com.keycloak.example.model.EntityBase;
+import com.keycloak.example.model.User;
 
 @Service
 public abstract class GenericService {
@@ -19,4 +23,13 @@ public abstract class GenericService {
 		return mapper;
 	}
 
+	public void setUserDetails(EntityBase entityBase, User user) {
+		entityBase.setUpdatedBy(user.getId());
+		entityBase.setUpdatedDate(LocalDateTime.now());
+	}
+
+	public void setUserDetailsForUpdate(EntityBase entityBase, User user) {
+		entityBase.setCreateBy(user.getId());
+		entityBase.setCreateDate(LocalDateTime.now());
+	}
 }

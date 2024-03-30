@@ -14,7 +14,7 @@ public class EntityBase implements Serializable {
 	private static final long serialVersionUID = 2187547867472438846L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	private Long createBy;
