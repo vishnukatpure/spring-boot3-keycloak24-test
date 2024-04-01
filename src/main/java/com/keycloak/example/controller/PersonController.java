@@ -29,12 +29,12 @@ public class PersonController extends AbstractController {
 	PersonService personService;
 
 	@GetMapping(value = "/{id}")
-	public ResponseDTO getAllUsers(@PathVariable Long id) {
+	public ResponseDTO getAllUsers(@PathVariable("id") Long id) {
 		return personService.getById(id);
 	}
 
 	@GetMapping(value = "/personByName/{name}")
-	public ResponseDTO getPersoneByName(@PathVariable String name) {
+	public ResponseDTO getPersoneByName(@PathVariable("name") String name) {
 		return personService.findByName(name);
 	}
 
@@ -44,7 +44,7 @@ public class PersonController extends AbstractController {
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public HttpStatus deletePerson(@PathVariable Long id, @AuthenticationPrincipal Jwt jwt) {
+	public HttpStatus deletePerson(@PathVariable("id") Long id, @AuthenticationPrincipal Jwt jwt) {
 		User user = getLoggedInUser(jwt);
 		personService.deletePerson(id, user);
 		return HttpStatus.NO_CONTENT;
