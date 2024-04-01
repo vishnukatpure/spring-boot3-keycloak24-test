@@ -1,6 +1,8 @@
 {
   "id": "cb993023-6e60-417d-af20-b0cf9faeb4f2",
   "realm": "keycloak-test",
+  "displayName": "TEST",
+  "displayNameHtml": "TEST",
   "notBefore": 0,
   "defaultSignatureAlgorithm": "RS256",
   "revokeRefreshToken": false,
@@ -80,6 +82,15 @@
         "id": "31e40f19-1675-4466-82b5-82c3cdcc0a0e",
         "name": "offline_access",
         "description": "${role_offline-access}",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "cb993023-6e60-417d-af20-b0cf9faeb4f2",
+        "attributes": {}
+      },
+      {
+        "id": "9295abc4-f928-44ba-b08b-c124515c54c6",
+        "name": "user-role",
+        "description": "user-role",
         "composite": false,
         "clientRole": false,
         "containerId": "cb993023-6e60-417d-af20-b0cf9faeb4f2",
@@ -1542,13 +1553,19 @@
   "firstBrokerLoginFlow": "first broker login",
   "attributes": {
     "cibaBackchannelTokenDeliveryMode": "poll",
-    "cibaExpiresIn": "120",
     "cibaAuthRequestedUserHint": "login_hint",
-    "oauth2DeviceCodeLifespan": "600",
+    "clientOfflineSessionMaxLifespan": "0",
     "oauth2DevicePollingInterval": "5",
-    "parRequestUriLifespan": "60",
+    "clientSessionIdleTimeout": "0",
+    "clientOfflineSessionIdleTimeout": "0",
     "cibaInterval": "5",
-    "realmReusableOtpCode": "false"
+    "realmReusableOtpCode": "false",
+    "cibaExpiresIn": "120",
+    "oauth2DeviceCodeLifespan": "600",
+    "parRequestUriLifespan": "60",
+    "clientSessionMaxLifespan": "0",
+    "frontendUrl": "",
+    "acr.loa.map": "{}"
   },
   "keycloakVersion": "24.0.1",
   "userManagedAccessAllowed": false,
